@@ -6,242 +6,190 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>534</width>
-    <height>434</height>
+    <width>560</width>
+    <height>440</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>480</width>
+    <height>380</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Thống kê chi tiết</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #E2D4F0;     border: 0px solid #8A46D8;     border-radius:12px; </string>
+   <string notr="true">QDialog {
+    background: #F4F7FB;
+    color: #050505;
+    font-family: Arial;
+}
+QFrame#card {
+    background: #FFFFFF;
+    border: 1px solid #D8E0EA;
+    border-radius: 8px;
+}
+QLabel {
+    color: #050505;
+    font-size: 14px;
+}
+QLabel#lbl_title {
+    font-size: 21px;
+    font-weight: 800;
+}
+QLabel#label,
+QLabel#label_2,
+QLabel#label_4,
+QLabel#label_6,
+QLabel#label_8 {
+    color: #526173;
+    font-size: 13px;
+    font-weight: 700;
+}
+QLabel#lbl_tong_xe,
+QLabel#lbl_xe_may,
+QLabel#lbl_xe_oto,
+QLabel#lbl_doanh_thu {
+    color: #0F2847;
+    font-size: 20px;
+    font-weight: 800;
+    padding: 8px 12px;
+    background: #F7FAFC;
+    border: 1px solid #E1E8F0;
+    border-radius: 6px;
+}
+QDateTimeEdit {
+    min-height: 38px;
+    padding: 6px 12px;
+    background: #FFFFFF;
+    border: 1px solid #C8D2DE;
+    border-radius: 6px;
+    color: #050505;
+    font-weight: 700;
+}</string>
   </property>
-  <widget class="QLabel" name="lbl_title">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>10</y>
-     <width>291</width>
-     <height>41</height>
-    </rect>
+  <layout class="QVBoxLayout" name="dialogLayout">
+   <property name="leftMargin">
+    <number>28</number>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>20</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
+   <property name="topMargin">
+    <number>26</number>
    </property>
-   <property name="text">
-    <string>THỐNG KÊ CHI TIẾT</string>
+   <property name="rightMargin">
+    <number>28</number>
    </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>41</x>
-     <y>87</y>
-     <width>114</width>
-     <height>24</height>
-    </rect>
+   <property name="bottomMargin">
+    <number>28</number>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::NoFrame</enum>
-   </property>
-   <property name="text">
-    <string>Chọn ngày:</string>
-   </property>
-  </widget>
-  <widget class="QDateTimeEdit" name="date_select">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>80</y>
-     <width>271</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #FFFFFF;
-    border: 1px solid #000000;
-    border-radius: 12px;
-    padding: 3px 8px;
-    font-weight: bold;
-    min-width: 120px;</string>
-   </property>
-   <property name="maximumTime">
-    <time>
-     <hour>11</hour>
-     <minute>59</minute>
-     <second>59</second>
-    </time>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>41</x>
-     <y>148</y>
-     <width>115</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Tổng số xe:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lbl_tong_xe">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>150</y>
-     <width>22</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>77</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>41</x>
-     <y>209</y>
-     <width>82</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Xe máy:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lbl_xe_may">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>210</y>
-     <width>22</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>45</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>41</x>
-     <y>270</y>
-     <width>77</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Xe ô tô:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lbl_xe_oto">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>270</y>
-     <width>22</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>32</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_8">
-   <property name="geometry">
-    <rect>
-     <x>41</x>
-     <y>331</y>
-     <width>112</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Doanh thu:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lbl_doanh_thu">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>330</y>
-     <width>89</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>250.000 đ</string>
-   </property>
-  </widget>
+   <item>
+    <widget class="QFrame" name="card">
+     <layout class="QVBoxLayout" name="cardLayout">
+      <property name="leftMargin">
+       <number>30</number>
+      </property>
+      <property name="topMargin">
+       <number>28</number>
+      </property>
+      <property name="rightMargin">
+       <number>30</number>
+      </property>
+      <property name="bottomMargin">
+       <number>28</number>
+      </property>
+      <property name="spacing">
+       <number>18</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="lbl_title">
+        <property name="text">
+         <string>THỐNG KÊ CHI TIẾT</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="statsGrid">
+        <property name="horizontalSpacing">
+         <number>18</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>14</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Chọn ngày</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDateTimeEdit" name="date_select"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Tổng số xe</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="lbl_tong_xe">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Xe máy</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="lbl_xe_may">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Xe ô tô</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="lbl_xe_oto">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Doanh thu</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLabel" name="lbl_doanh_thu">
+          <property name="text">
+           <string>0 đ</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

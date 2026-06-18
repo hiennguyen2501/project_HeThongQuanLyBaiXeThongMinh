@@ -32,8 +32,45 @@ class HangDoiXeCho:
         self._size -= 1
         return temp.data
 
+    def dequeue_theo_loai(self, loai_xe):
+        """Lấy xe đầu tiên đúng loại, vẫn giữ thứ tự tương đối của các xe còn lại."""
+        previous = None
+        current = self.head
+
+        while current is not None:
+            if current.data.loai_xe == loai_xe:
+                if previous is None:
+                    self.head = current.next
+                else:
+                    previous.next = current.next
+                if current == self.tail:
+                    self.tail = previous
+                self._size -= 1
+                return current.data
+            previous = current
+            current = current.next
+
+        return None
+
     def is_empty(self):
         return self.head is None
 
     def size(self):
         return self._size
+
+    def dem_theo_loai(self, loai_xe):
+        dem = 0
+        current = self.head
+        while current is not None:
+            if current.data.loai_xe == loai_xe:
+                dem += 1
+            current = current.next
+        return dem
+
+    def to_list(self):
+        danh_sach = []
+        current = self.head
+        while current is not None:
+            danh_sach.append(current.data)
+            current = current.next
+        return danh_sach
