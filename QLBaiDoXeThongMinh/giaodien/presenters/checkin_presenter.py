@@ -12,7 +12,9 @@ class CheckInPresenter:
             return
         
         loai_xe = self._view.lay_loai_xe()
-        #doan nay sau nay se goij service
+        #Gọi service
+        from logic_handler import check_in
+        check_in(bien_so)
         print("Bien so", bien_so)
         print("Loai Xe", loai_xe)
         #
