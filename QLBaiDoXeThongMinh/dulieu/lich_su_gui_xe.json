@@ -1,0 +1,20 @@
+[
+  {
+    "bien_so": "37P112345",
+    "loai_xe": "Xe máy",
+    "vi_tri": "A01",
+    "gio_vao": "2026-06-19T21:50:13",
+    "gio_ra": "2026-06-19T21:51:12",
+    "so_phut_gui": 1,
+    "thanh_tien": 5000
+  },
+  {
+    "bien_so": "37P112345",
+    "loai_xe": "Xe máy",
+    "vi_tri": "A01",
+    "gio_vao": "2026-06-22T21:08:34",
+    "gio_ra": "2026-06-22T21:09:16",
+    "so_phut_gui": 1,
+    "thanh_tien": 5000
+  }
+]
