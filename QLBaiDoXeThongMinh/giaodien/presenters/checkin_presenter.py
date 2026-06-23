@@ -19,6 +19,3 @@ class CheckInPresenter:
         print("Loai Xe", loai_xe)
         #
         self._view.dong_thanh_cong()
-
-
-

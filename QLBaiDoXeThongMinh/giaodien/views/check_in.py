@@ -32,5 +32,3 @@ class CheckInDialog(QDialog):
 
     def dong_thanh_cong(self):
         self.accept()
-    
-    
