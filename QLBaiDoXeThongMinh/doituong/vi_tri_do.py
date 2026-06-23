@@ -1,4 +1,8 @@
 from doituong.phuong_tien import PhuongTien
+
+
+
+
 class ViTriDo:
     def __init__(self, ma_vi_tri, loai_slot):
         self._ma_vi_tri = ma_vi_tri
@@ -17,23 +21,30 @@ class ViTriDo:
     @property
     def xe_dang_do(self):
         return self._xe_dang_do
+
+
     def dat_xe(self, xe: PhuongTien):
         if self._trang_thai == "Đã có xe":
-            print("Vị trí đã có xe")
-            return
+            raise ValueError(f"Vị trí {self._ma_vi_tri} đã có xe")
         if xe.loai_xe != self._loai_slot:
-            print("Loại xe không phù hợp vị trí đỗ")
-            return
+            raise ValueError("Loại xe không phù hợp vị trí đỗ")
         self._xe_dang_do = xe
         self._trang_thai = "Đã có xe"
+        return self
+
+
     def trong_xe(self):
+        xe_da_do = self._xe_dang_do
         self._xe_dang_do = None
         self._trang_thai = "Trống"
+        return xe_da_do
+
+
     def xuat(self):
         print("Mã vị trí:", self._ma_vi_tri)
         print("Loại vị trí:", self._loai_slot)
         print("Trạng thái:", self._trang_thai)
         if self._xe_dang_do:
-            self._xe_dang_do.xuat()     
+            self._xe_dang_do.xuat()    
         else:
-            print("Chưa có xe")   
+            print("Chưa có xe")  
