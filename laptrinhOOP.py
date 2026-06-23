@@ -5,7 +5,7 @@ class PhuongTien(ABC):
     def __init__(self, bien_so: str, loai_xe: str):
         self._bien_so = bien_so
         self._loai_xe = loai_xe
-        self._thoi_gian_vao = datetime.now()   
+        self._thoi_gian_vao = datetime.now()  
     @property
     def bien_so(self):
         return self._bien_so
@@ -30,7 +30,7 @@ class XeMay(PhuongTien):
     def __init__(self, bien_so: str,mau_sac: str):
         super().__init__(bien_so, loai_xe="XeMay")
         self.mau_sac= mau_sac
-    def tinh_tien_gui(self, thoi_gian_ra: datetime) : 
+    def tinh_tien_gui(self, thoi_gian_ra: datetime) :
         if thoi_gian_ra < self.thoi_gian_vao:
             return 0
         khoang_thoi_gian = thoi_gian_ra - self.thoi_gian_vao
@@ -40,8 +40,8 @@ class XeMay(PhuongTien):
         super().xuat()
         print("Màu sắc:", self.mau_sac)
 class OTo(PhuongTien):
-    gia_gio_dau = 20000       
-    gia_gio_tiep_theo = 15000 
+    gia_gio_dau = 20000      
+    gia_gio_tiep_theo = 15000
     def __init__(self, bien_so: str, mau_sac:str):
         super().__init__(bien_so, loai_xe="OTo")
         self.mau_sac= mau_sac
@@ -59,9 +59,9 @@ class OTo(PhuongTien):
         print("Màu sắc:", self.mau_sac)
 class ViTriDo:
     def __init__(self, ma_vi_tri: str, loai_slot: str):
-        self._ma_vi_tri = ma_vi_tri       
+        self._ma_vi_tri = ma_vi_tri      
         self._loai_slot = loai_slot        
-        self._trang_thai = "Trống"         
+        self._trang_thai = "Trống"        
         self._xe_dang_do = None            
     @property
     def ma_vi_tri(self):
