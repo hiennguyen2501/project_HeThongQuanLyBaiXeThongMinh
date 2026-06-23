@@ -12,3 +12,4 @@ class VehicleNotFoundError(Exception):
     def __init__(self, message="Lỗi: Không tìm thấy phương tiện trong bãi!"):
         self.message = message
         super().__init__(self.message)
+        
