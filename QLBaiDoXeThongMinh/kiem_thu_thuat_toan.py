@@ -24,6 +24,7 @@ print("\n--- DỮ LIỆU ĐẨY RA CHO GUI ---")
 du_lieu_gui = bai_xe.lay_du_lieu_so_do_cho_gui()
 for hang in du_lieu_gui:
     print([{o['ma_vi_tri']: o['trang_thai']} for o in hang])
+    
 
 # 5. Test tính năng Check-out và giải phóng bộ nhớ
 print("\n--- TEST CHECK-OUT ---")
