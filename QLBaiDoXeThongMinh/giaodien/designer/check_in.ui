@@ -6,193 +6,215 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>533</width>
-    <height>410</height>
+    <width>560</width>
+    <height>430</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>560</width>
+    <height>430</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Check-in xe vào</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #E3F2FD;    border: 0px solid #1565C0;   border-radius: 12px;    </string>
+   <string notr="true">QDialog {
+    background: #F4F7FB;
+    color: #050505;
+    font-family: Arial;
+}
+QFrame#card {
+    background: #FFFFFF;
+    border: 1px solid #D8E0EA;
+    border-radius: 8px;
+}
+QLabel#label {
+    color: #050505;
+    font-size: 21px;
+    font-weight: 700;
+}
+QLabel#txt_bien_so_xe,
+QLabel#label_2,
+QLabel#label_3 {
+    color: #050505;
+    font-size: 13px;
+    font-weight: 700;
+}
+QLineEdit,
+QComboBox {
+    min-height: 38px;
+    padding: 6px 12px;
+    background: #FFFFFF;
+    border: 1px solid #C8D2DE;
+    border-radius: 6px;
+    color: #050505;
+    font-size: 14px;
+}
+QLineEdit:focus,
+QComboBox:focus {
+    border: 1px solid #2563EB;
+}
+QLabel#lbl_thoi_gian_vao {
+    color: #050505;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 12px;
+    background: #EEF5FF;
+    border: 1px solid #D5E5FF;
+    border-radius: 6px;
+}
+QPushButton#btn_checkin {
+    min-height: 44px;
+    background: #176BFF;
+    color: #050505;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+}
+QPushButton#btn_checkin:hover {
+    background: #0F58D6;
+}
+QPushButton#btn_checkin:pressed {
+    background: #0A439F;
+}</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>10</y>
-     <width>241</width>
-     <height>41</height>
-    </rect>
+  <layout class="QVBoxLayout" name="dialogLayout">
+   <property name="leftMargin">
+    <number>28</number>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>17</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
+   <property name="topMargin">
+    <number>26</number>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: blue</string>
+   <property name="rightMargin">
+    <number>28</number>
    </property>
-   <property name="text">
-    <string>CHECK-IN (XE VÀO)</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="txt_bien_so_xe">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>90</y>
-     <width>121</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Biển số:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>170</y>
-     <width>111</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Loại xe:</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="cb_loai_xe">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>170</y>
-     <width>231</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="cursor">
-    <cursorShape>ArrowCursor</cursorShape>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #E3F2FD;    border: 2px solid #1565C0;   border-radius: 12px;    </string>
-   </property>
-   <property name="editable">
-    <bool>false</bool>
+   <property name="bottomMargin">
+    <number>28</number>
    </property>
    <item>
-    <property name="text">
-     <string>Xe máy</string>
-    </property>
+    <widget class="QFrame" name="card">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <layout class="QVBoxLayout" name="cardLayout">
+      <property name="leftMargin">
+       <number>30</number>
+      </property>
+      <property name="topMargin">
+       <number>28</number>
+      </property>
+      <property name="rightMargin">
+       <number>30</number>
+      </property>
+      <property name="bottomMargin">
+       <number>28</number>
+      </property>
+      <property name="spacing">
+       <number>18</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>CHECK-IN XE VÀO</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="formLayout">
+        <property name="horizontalSpacing">
+         <number>18</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>14</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="txt_bien_so_xe">
+          <property name="text">
+           <string>Biển số</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="txt_bien_so">
+          <property name="placeholderText">
+           <string>Ví dụ: 38A-12345</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Loại xe</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="cb_loai_xe">
+          <item>
+           <property name="text">
+            <string>Xe máy</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ô tô</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Thời gian vào</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="lbl_thoi_gian_vao">
+          <property name="text">
+           <string>16/06/2026 15:48:22</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>18</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_checkin">
+        <property name="text">
+         <string>CHECK-IN</string>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
-   <item>
-    <property name="text">
-     <string>Ô tô</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QPushButton" name="btn_checkin">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>310</y>
-     <width>171</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: black;font-size: 16pt;font-weight: bold; background-color: blue</string>
-   </property>
-   <property name="text">
-    <string>CHECK-IN</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="txt_bien_so">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>100</y>
-     <width>231</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #E3F2FD;    border: 2px solid #1565C0;   border-radius: 12px;    </string>
-   </property>
-   <property name="placeholderText">
-    <string>Ví dụ: 38A-12345</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>250</y>
-     <width>161</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Thời gian vào:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lbl_thoi_gian_vao">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>250</y>
-     <width>211</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>16/06/2026 15:48:22</string>
-   </property>
-  </widget>
+  </layout>
  </widget>
  <resources/>
  <connections/>
 </ui>
+
+
+

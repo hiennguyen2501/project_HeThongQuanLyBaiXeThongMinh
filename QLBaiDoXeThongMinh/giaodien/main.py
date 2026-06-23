@@ -5,6 +5,11 @@ import os
 from views.trang_chu import TrangChu
 from presenters.trang_chu_presenter import TrangChuPresenter
 
+
+
+
+
+
 app = QApplication(sys.argv)
 app.setStyleSheet("""
 QMessageBox {
@@ -28,8 +33,18 @@ QMessageBox QPushButton:hover {
 }
 """)
 
+
+
+
 view = TrangChu()
 presenter = TrangChuPresenter(view)
+
+
 presenter.load()
+
+
 view.show()
 sys.exit(app.exec_())
+
+
+

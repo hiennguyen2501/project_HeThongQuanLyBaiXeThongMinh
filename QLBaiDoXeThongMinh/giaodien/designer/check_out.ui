@@ -6,140 +6,176 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>535</width>
-    <height>411</height>
+    <width>540</width>
+    <height>390</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>460</width>
+    <height>330</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Check-out xe ra</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #E8F5E9;     border: 0px solid #2E7D32;     border-radius: 12px;</string>
+   <string notr="true">QDialog {
+    background: #F4F7FB;
+    color: #050505;
+    font-family: Arial;
+}
+QFrame#card {
+    background: #FFFFFF;
+    border: 1px solid #D8E0EA;
+    border-radius: 8px;
+}
+QLabel {
+    color: #050505;
+    font-size: 14px;
+}
+QLabel#lbl_tieu_de {
+    font-size: 21px;
+    font-weight: 800;
+}
+QLabel#label,
+QLabel#label_2 {
+    font-size: 13px;
+    font-weight: 700;
+}
+QLineEdit,
+QLabel#lbl_loai_xe {
+    min-height: 38px;
+    padding: 6px 12px;
+    background: #FFFFFF;
+    border: 1px solid #C8D2DE;
+    border-radius: 6px;
+    color: #050505;
+    font-size: 14px;
+}
+QPushButton#btn_checkout {
+    min-height: 44px;
+    background: #16A34A;
+    color: #050505;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 800;
+}
+QPushButton#btn_checkout:hover {
+    background: #12833D;
+}</string>
   </property>
-  <widget class="QLabel" name="lbl_tieu_de">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>20</y>
-     <width>241</width>
-     <height>41</height>
-    </rect>
+  <layout class="QVBoxLayout" name="dialogLayout">
+   <property name="leftMargin">
+    <number>28</number>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>17</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
+   <property name="topMargin">
+    <number>26</number>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #E8F5E9;     border: 0px solid #2E7D32;     border-radius: 12px; color: green</string>
+   <property name="rightMargin">
+    <number>28</number>
    </property>
-   <property name="text">
-    <string>CHECK-OUT (XE RA)</string>
+   <property name="bottomMargin">
+    <number>28</number>
    </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>120</y>
-     <width>91</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Biển số:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="txt_bien_so">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>120</y>
-     <width>231</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #E8F5E9;     border: 2px solid #2E7D32;     border-radius: 12px;</string>
-   </property>
-   <property name="placeholderText">
-    <string>Ví dụ: 38A-12345</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>210</y>
-     <width>101</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Loại xe:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lbl_loai_xe">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>210</y>
-     <width>231</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: #E8F5E9;     border: 2px solid #2E7D32;     border-radius: 12px;</string>
-   </property>
-   <property name="text">
-    <string>Xe máy</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btn_checkout">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>320</y>
-     <width>221</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: black;font-size: 16pt;font-weight: bold; background-color: green</string>
-   </property>
-   <property name="text">
-    <string>CHECK-OUT</string>
-   </property>
-  </widget>
+   <item>
+    <widget class="QFrame" name="card">
+     <layout class="QVBoxLayout" name="cardLayout">
+      <property name="leftMargin">
+       <number>30</number>
+      </property>
+      <property name="topMargin">
+       <number>28</number>
+      </property>
+      <property name="rightMargin">
+       <number>30</number>
+      </property>
+      <property name="bottomMargin">
+       <number>28</number>
+      </property>
+      <property name="spacing">
+       <number>18</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="lbl_tieu_de">
+        <property name="text">
+         <string>CHECK-OUT XE RA</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="formLayout">
+        <property name="horizontalSpacing">
+         <number>18</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>14</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Biển số</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="txt_bien_so">
+          <property name="placeholderText">
+           <string>Ví dụ: 38A-12345</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Loại xe</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="lbl_loai_xe">
+          <property name="text">
+           <string>Tự động theo biển số</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_checkout">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>CHECK-OUT</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
 </ui>
+
+
+

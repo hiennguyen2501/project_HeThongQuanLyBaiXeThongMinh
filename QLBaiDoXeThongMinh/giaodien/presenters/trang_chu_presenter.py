@@ -13,13 +13,19 @@ from PyQt5.QtWidgets import QDialog, QMainWindow, QMessageBox, QPushButton, QTab
 import os
 import sys
 
+
+
+
 DESIGNER_DIR = os.path.join(os.path.dirname(__file__), "..", "designer")
 PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if PROJECT_DIR not in sys.path:
     sys.path.append(PROJECT_DIR)
 
+
 from xulyhethong.quan_ly_bai_xe import QuanLyBaiXe
 from doituong.loi_ngoai_le import VehicleNotFoundError
+
+
 
 
 class TrangChuPresenter:
@@ -29,6 +35,7 @@ class TrangChuPresenter:
         self._bai_xe = QuanLyBaiXe()
         self._noi_su_kien()
 
+
     def _noi_su_kien(self):
         self._view.yeu_cau_checkin.connect(self.mo_man_hinh_check_in)
         self._view.yeu_cau_checkout.connect(self.mo_man_hinh_check_out)
@@ -36,19 +43,23 @@ class TrangChuPresenter:
         self._view.yeu_cau_thong_ke_chi_tiet.connect(self.mo_man_hinh_thong_ke_chi_tiet)
         self._view.yeu_cau_so_do.connect(self.mo_man_hinh_so_do)
 
+
     def load(self):
         self._cap_nhat_dashboard()
+
 
     def mo_man_hinh_check_in(self):
         dialog = CheckInDialog()
         presenter = CheckInPresenter(dialog, self._bai_xe, self._cap_nhat_dashboard)
         dialog.exec_()
 
+
     def mo_man_hinh_check_out(self):
         dialog = self._load_dialog("check_out.ui")
         if hasattr(dialog, "btn_checkout"):
             dialog.btn_checkout.clicked.connect(lambda: self._xu_ly_check_out(dialog))
         dialog.exec_()
+
 
     def mo_man_hinh_quan_ly_bai_xe(self):
         self._mo_man_hinh_quan_ly(tab_index=0)
@@ -212,6 +223,7 @@ class TrangChuPresenter:
             ["bien_so", "loai_xe", "vi_tri", "gio_vao", "gio_ra", "thanh_tien"],
         )
 
+
     def _do_du_lieu_bang(self, table, rows, columns, gia_tri_mac_dinh=None):
         gia_tri_mac_dinh = gia_tri_mac_dinh or {}
         table.setRowCount(len(rows))
@@ -220,5 +232,6 @@ class TrangChuPresenter:
                 value = row_data.get(column, gia_tri_mac_dinh.get(column, ""))
                 table.setItem(row_index, col_index, QTableWidgetItem(str(value)))
         table.resizeColumnsToContents()
+
 
 
