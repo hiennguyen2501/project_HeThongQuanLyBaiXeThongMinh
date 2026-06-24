@@ -195,7 +195,7 @@ class QuanLyBaiXe:
             for xe in self.hang_doi.to_list()
         ]
     def lay_lich_su_xe_ra(self):
-        return [self._format_ban_ghi_lich_su(ban_ghi) for ban_ghi in self._lich_su_xe_ra]
+        return [self._format_ban_ghi_lich_su(ban_ghi) for ban_ghi in reversed(self._lich_su_xe_ra)]
 
 
     def lay_lich_su_gui_lau_nhat(self):
