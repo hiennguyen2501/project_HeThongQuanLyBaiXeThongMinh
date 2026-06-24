@@ -22,16 +22,6 @@ class ThongTinXeRaDialog(QDialog):
     def bao_loi(self, message):
         QMessageBox.warning(self, "Loi", message)
 
-    def thong_bao_xe_cho(self):
-        xe_cho = self._bien_lai.get("xe_vao_tu_hang_doi")
-        if xe_cho is None:
-            return
-        QMessageBox.information(
-            self,
-            "Hang doi",
-            f"Xe {xe_cho.bien_so} da duoc tu dong xep vao vi tri {self._bien_lai['ma_vi_tri']}.",
-        )
-
     def _hien_bien_lai(self, bien_lai):
         xe_ra = bien_lai["xe_ra"]
         so_phut = int(bien_lai["so_phut_gui"])

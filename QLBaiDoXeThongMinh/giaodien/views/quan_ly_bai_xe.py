@@ -13,7 +13,7 @@ class QuanLyBaiXeWindow(QMainWindow):
         super().__init__()
         uic.loadUi(UI_PATH, self)
         self.tabWidget.setCurrentIndex(tab_index)
-        self.btn_xuat_excel.setText("Thong ke")
+        self.btn_xuat_excel.setText("Thống kê")
         self.btn_xuat_excel.setIcon(self.style().standardIcon(QStyle.SP_FileDialogDetailedView))
         self.btn_xuat_excel.setVisible(tab_index == 1)
         self.btn_xuat_excel.clicked.connect(self.yeu_cau_xuat_thong_ke.emit)
@@ -24,7 +24,7 @@ class QuanLyBaiXeWindow(QMainWindow):
             self.tableWidget,
             xe_dang_gui,
             ["bien_so", "loai_xe", "vi_tri", "gio_vao", "hanh_dong"],
-            {"hanh_dong": "CHECK-IN"},
+            {"hanh_dong": "ĐANG GỬI"},
         )
         self._do_du_lieu_bang(
             self.tableWidget_2,

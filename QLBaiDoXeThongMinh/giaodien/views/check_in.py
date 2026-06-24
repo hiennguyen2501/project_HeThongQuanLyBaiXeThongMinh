@@ -47,7 +47,7 @@ class CheckInDialog(QDialog, ICheckinView):
         return self.cb_loai_xe.currentText()
 
     def bao_loi(self, message):
-        QMessageBox.warning(self, "Loi", message)
+        QMessageBox.warning(self, "Lỗi", message)
 
     def thong_bao(self, title, message):
         QMessageBox.information(self, title, message)
