@@ -19,11 +19,11 @@ class CheckInPresenter:
     def xu_ly_check_in(self):
         bien_so = self._view.lay_bien_so().strip().upper()
         if not bien_so:
-            self._view.bao_loi("Vui long nhap bien so xe")
+            self._view.bao_loi("Vui lòng nhập biển số xe")
             return
 
         if self._parking_service is None:
-            self._view.bao_loi("He thong bai xe chua duoc khoi tao")
+            self._view.bao_loi("Hệ thống bãi xe chưa được khởi tạo")
             return
 
         try:
@@ -33,9 +33,15 @@ class CheckInPresenter:
             return
 
         if ket_qua["vao_hang_doi"]:
-            self._view.thong_bao("Hang doi", f"Bai da day. Xe {bien_so} da duoc dua vao hang doi.")
+            self._view.thong_bao(
+                "Hàng đợi",
+                f"Bãi đã đầy. Xe {bien_so} đã được thêm vào danh sách xe chờ.",
+            )
         else:
-            self._view.thong_bao("Thanh cong", f"Xe {bien_so} da duoc xep vao vi tri {ket_qua['ma_vi_tri']}.")
+            self._view.thong_bao(
+                "Check-in thành công",
+                f"Xe {bien_so} đã được thêm vào danh sách xe đang gửi tại vị trí {ket_qua['ma_vi_tri']}.",
+            )
 
         if self._callback_cap_nhat:
             self._callback_cap_nhat()

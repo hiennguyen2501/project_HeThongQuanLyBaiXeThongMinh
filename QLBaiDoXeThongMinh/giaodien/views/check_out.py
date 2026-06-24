@@ -26,7 +26,7 @@ class CheckOutDialog(QDialog):
         self._cap_nhat_goi_y(self.txt_bien_so.text())
 
     def bao_loi(self, message):
-        QMessageBox.warning(self, "Loi", message)
+        QMessageBox.warning(self, "Lỗi", message)
 
     def dong_thanh_cong(self):
         self.accept()

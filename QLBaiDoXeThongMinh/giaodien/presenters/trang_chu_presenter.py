@@ -41,7 +41,7 @@ class TrangChuPresenter:
 
     def mo_man_hinh_check_in(self):
         dialog = CheckInDialog()
-        CheckInPresenter(dialog, self._parking_service, self._cap_nhat_dashboard)
+        dialog._presenter = CheckInPresenter(dialog, self._parking_service, self._cap_nhat_dashboard)
         dialog.exec_()
 
     def mo_man_hinh_check_out(self):
@@ -75,7 +75,7 @@ class TrangChuPresenter:
     def _xu_ly_check_out(self, dialog):
         bien_so = dialog.lay_bien_so()
         if not bien_so:
-            dialog.bao_loi("Vui long nhap bien so xe")
+            dialog.bao_loi("Vui lòng nhập biển số xe cần check-out")
             return
 
         try:
@@ -86,24 +86,28 @@ class TrangChuPresenter:
 
         self._cap_nhat_dashboard()
         dialog.dong_thanh_cong()
+        QMessageBox.information(
+            self._view,
+            "Check-out thành công",
+            f"Xe {bien_lai['xe_ra'].bien_so} đã rời bãi đỗ xe"
+        )
         self._mo_thong_tin_xe_ra(bien_lai)
 
     def _mo_thong_tin_xe_ra(self, bien_lai):
         dialog = ThongTinXeRaDialog(bien_lai)
         dialog.yeu_cau_xuat_hoa_don.connect(lambda file_path: self._xuat_anh_hoa_don(dialog, bien_lai, file_path))
-        dialog.thong_bao_xe_cho()
         dialog.exec_()
 
     def _xuat_anh_hoa_don(self, dialog, bien_lai, file_path):
         if self._hoa_don_service.xuat_anh_hoa_don(bien_lai, file_path):
-            dialog.thong_bao("Thanh cong", f"Da xuat anh hoa don:\n{file_path}")
+            dialog.thong_bao("Thành công", f"Đã xuất ảnh hóa đơn:\n{file_path}")
         else:
-            dialog.bao_loi("Khong the luu anh hoa don.")
+            dialog.bao_loi("Không thể lưu ảnh hóa đơn.")
 
     def _xuat_excel_thong_ke(self, parent):
         file_path, _ = QFileDialog.getSaveFileName(
             parent,
-            "Luu file thong ke",
+            "Lưu file thống kê",
             "thong_ke_bai_xe.xlsx",
             "Excel Files (*.xlsx)",
         )
@@ -119,12 +123,12 @@ class TrangChuPresenter:
                 self._parking_service.lay_lich_su_gui_lau_nhat(),
             )
         except ImportError:
-            QMessageBox.warning(parent, "Thieu thu vien", "Can cai dat openpyxl de xuat Excel.")
+            QMessageBox.warning(parent, "Thiếu thư viện", "Cần cài đặt openpyxl để xuất Excel.")
             return
         except Exception as error:
-            QMessageBox.warning(parent, "Loi", f"Khong the luu file:\n{error}")
+            QMessageBox.warning(parent, "Lỗi", f"Không thể lưu file:\n{error}")
             return
-        QMessageBox.information(parent, "Thanh cong", f"Da xuat Excel:\n{file_path}")
+        QMessageBox.information(parent, "Thành công", f"Đã xuất Excel:\n{file_path}")
 
     def _cap_nhat_dashboard(self):
         data = self._parking_service.lay_dashboard()
@@ -149,5 +153,4 @@ class TrangChuPresenter:
             self._parking_service.lay_danh_sach_xe_dang_gui(),
             self._parking_service.lay_lich_su_xe_ra(),
         )
-
 
