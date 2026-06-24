@@ -1,65 +1,42 @@
+﻿import os
 import sys
-import os
 
 PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if PROJECT_DIR not in sys.path:
     sys.path.append(PROJECT_DIR)
 
-from views.check_in import ICheckinView
-from doituong.loai_xe import XeMay, OTo
 from doituong.loi_ngoai_le import LotFullError
+from views.check_in import ICheckinView
 
 
 class CheckInPresenter:
-    def __init__(self, view: ICheckinView, bai_xe=None, callback_cap_nhat=None):
+    def __init__(self, view: ICheckinView, parking_service=None, callback_cap_nhat=None):
         self._view = view
-        self._bai_xe = bai_xe
+        self._parking_service = parking_service
         self._callback_cap_nhat = callback_cap_nhat
         self._view.yeu_cau_xac_nhan.connect(self.xu_ly_check_in)
 
     def xu_ly_check_in(self):
-        bien_so = self._view.lay_bien_so().strip()
+        bien_so = self._view.lay_bien_so().strip().upper()
         if not bien_so:
-            self._view.bao_loi("Vui lòng nhập biển số xe")
+            self._view.bao_loi("Vui long nhap bien so xe")
             return
 
-        loai_xe_text = self._view.lay_loai_xe()
-
-        if self._bai_xe is None:
-            self._view.bao_loi("Hệ thống bãi xe chưa được khởi tạo")
+        if self._parking_service is None:
+            self._view.bao_loi("He thong bai xe chua duoc khoi tao")
             return
 
         try:
-            if loai_xe_text == "Xe máy":
-                xe = XeMay(bien_so)
-            else:
-                xe = OTo(bien_so)
-
-            vi_tri = self._bai_xe.check_in_xe(xe)
-
-            if vi_tri is None:
-                from PyQt5.QtWidgets import QMessageBox
-                QMessageBox.information(
-                    self._view,
-                    "Hàng đợi",
-                    f"Bãi đã đầy. Xe {bien_so} đã được đưa vào hàng đợi.",
-                )
-            else:
-                from PyQt5.QtWidgets import QMessageBox
-                QMessageBox.information(
-                    self._view,
-                    "Thành công",
-                    f"Xe {bien_so} đã được xếp vào vị trí {vi_tri.ma_vi_tri}.",
-                )
-
-        except ValueError as e:
-            self._view.bao_loi(str(e))
+            ket_qua = self._parking_service.check_in(bien_so, self._view.lay_loai_xe())
+        except (ValueError, LotFullError) as error:
+            self._view.bao_loi(str(error))
             return
-        except LotFullError as e:
-            self._view.bao_loi(str(e))
-            return
+
+        if ket_qua["vao_hang_doi"]:
+            self._view.thong_bao("Hang doi", f"Bai da day. Xe {bien_so} da duoc dua vao hang doi.")
+        else:
+            self._view.thong_bao("Thanh cong", f"Xe {bien_so} da duoc xep vao vi tri {ket_qua['ma_vi_tri']}.")
 
         if self._callback_cap_nhat:
             self._callback_cap_nhat()
-
         self._view.dong_thanh_cong()

@@ -1,12 +1,11 @@
-from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QMainWindow
+﻿from PyQt5.QtWidgets import QApplication
 import sys
-import os
-from views.trang_chu import TrangChu
-from presenters.trang_chu_presenter import TrangChuPresenter
 
-app = QApplication(sys.argv)
-app.setStyleSheet("""
+from presenters.trang_chu_presenter import TrangChuPresenter
+from views.trang_chu import TrangChu
+
+
+APP_STYLE = """
 QMessageBox {
     background-color: #FFFFFF;
     color: #050505;
@@ -26,20 +25,20 @@ QMessageBox QPushButton {
 QMessageBox QPushButton:hover {
     background-color: #E6EDF6;
 }
-""")
+"""
 
 
+def main():
+    app = QApplication(sys.argv)
+    app.setStyleSheet(APP_STYLE)
+
+    view = TrangChu()
+    presenter = TrangChuPresenter(view)
+    presenter.load()
+
+    view.show()
+    sys.exit(app.exec_())
 
 
-view = TrangChu()
-presenter = TrangChuPresenter(view)
-
-
-presenter.load()
-
-
-view.show()
-sys.exit(app.exec_())
-
-
-
+if __name__ == "__main__":
+    main()

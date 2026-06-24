@@ -42,9 +42,7 @@ class TrangChu(QMainWindow, ITrangChuView):
         self.btn_so_do_b2.clicked.connect(lambda: self.yeu_cau_so_do.emit(1))
 
     
-        # function này là 1 logic đúng không ... nên là mình sẽ chuyển nó sang presenter 
-        #view chỉ có nhiệm vụ mapping nút thôi không xử lý logic, sau này lỡ có muốn bổ sung nhiều logic hơn thì xử lý chõ khác 
-
+        
     def hien_so_xe(self, xe_may, oto):
         self.lbl_xe_may_2.setText(str(xe_may))  
         self.lbl_o_to_2.setText(str(oto))
