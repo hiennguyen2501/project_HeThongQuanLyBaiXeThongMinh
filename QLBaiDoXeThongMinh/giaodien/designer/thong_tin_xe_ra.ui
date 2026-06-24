@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>580</width>
-    <height>500</height>
+    <width>640</width>
+    <height>540</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>580</width>
-    <height>500</height>
+    <width>640</width>
+    <height>540</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -58,6 +58,7 @@ QLabel#lbl_thoi_gian_gui {
     background: #F7FAFC;
     border: 1px solid #E1E8F0;
     border-radius: 6px;
+    min-width: 300px;
 }
 QFrame#totalPanel {
     background: #FFF5EB;
@@ -153,6 +154,9 @@ QPushButton#btn_in_ve:pressed {
          <widget class="QLabel" name="lbl_bien_so">
           <property name="text">
            <string>38A - 12345</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
