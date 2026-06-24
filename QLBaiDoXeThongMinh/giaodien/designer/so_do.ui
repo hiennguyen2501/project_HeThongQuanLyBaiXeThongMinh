@@ -48,16 +48,30 @@ QTabWidget::pane {
 QTabBar::tab {
     background: #E8EEF6;
     color: #526173;
-    padding: 10px 26px;
+    padding: 12px 32px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     margin-right: 4px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
+    min-width: 160px;
 }
 QTabBar::tab:selected {
     background: #176BFF;
     color: #FFFFFF;
+}
+QPushButton#btn_quay_ve {
+    background: #475569;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    min-height: 36px;
+}
+QPushButton#btn_quay_ve:hover {
+    background: #334155;
 }
 QFrame#floorPanel,
 QFrame#legendPanel {
@@ -147,40 +161,73 @@ QPushButton[class="SlotBtn"] {
         <height>92</height>
        </size>
       </property>
-      <layout class="QVBoxLayout" name="headerLayout">
-       <property name="leftMargin">
-        <number>28</number>
-       </property>
-       <property name="topMargin">
-        <number>18</number>
-       </property>
-       <property name="rightMargin">
-        <number>28</number>
-       </property>
-       <property name="bottomMargin">
-        <number>18</number>
-       </property>
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>SƠ ĐỒ BÃI ĐỖ XE</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="subtitle">
-         <property name="text">
-          <string>Theo dõi trạng thái vị trí trống và vị trí đã có xe theo từng tầng</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <layout class="QHBoxLayout" name="headerOuterLayout">
+        <property name="leftMargin">
+         <number>28</number>
+        </property>
+        <property name="topMargin">
+         <number>18</number>
+        </property>
+        <property name="rightMargin">
+         <number>28</number>
+        </property>
+        <property name="bottomMargin">
+         <number>18</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="btn_quay_ve">
+          <property name="text">
+           <string>← Quay về</string>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>140</width>
+            <height>40</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="headerTextLayout">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>SƠ ĐỒ BÃI ĐỖ XE</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="subtitle">
+            <property name="text">
+             <string>Theo dõi trạng thái vị trí trống và vị trí đã có xe theo từng tầng</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="headerRightSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>140</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
      </widget>
     </item>
     <item>
@@ -207,7 +254,7 @@ QPushButton[class="SlotBtn"] {
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
-          <string>Tầng B1</string>
+          <string>Tầng B1 (Xe máy)</string>
          </attribute>
          <layout class="QVBoxLayout" name="tabLayout">
           <property name="leftMargin">
@@ -362,7 +409,7 @@ QPushButton[class="SlotBtn"] {
         </widget>
         <widget class="QWidget" name="tab_2">
          <attribute name="title">
-          <string>Tầng B2</string>
+          <string>Tầng B2 (Ô tô)</string>
          </attribute>
          <layout class="QVBoxLayout" name="tabLayout2">
           <property name="leftMargin">
