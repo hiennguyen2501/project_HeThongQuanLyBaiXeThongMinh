@@ -9,6 +9,7 @@ from views.check_in import ICheckinView
 from doituong.loai_xe import XeMay, OTo
 from doituong.loi_ngoai_le import LotFullError
 
+
 class CheckInPresenter:
     def __init__(self, view: ICheckinView, bai_xe=None, callback_cap_nhat=None):
         self._view = view
@@ -19,7 +20,8 @@ class CheckInPresenter:
     def xu_ly_check_in(self):
         bien_so = self._view.lay_bien_so().strip()
         if not bien_so:
-           self._view.bao_loi("Vui lòng nhập biển số xe")
+            self._view.bao_loi("Vui lòng nhập biển số xe")
+            return
 
         loai_xe_text = self._view.lay_loai_xe()
 
@@ -59,4 +61,5 @@ class CheckInPresenter:
 
         if self._callback_cap_nhat:
             self._callback_cap_nhat()
+
         self._view.dong_thanh_cong()

@@ -178,7 +178,7 @@ QPushButton#btn_checkin:pressed {
         <item row="2" column="1">
          <widget class="QLabel" name="lbl_thoi_gian_vao">
           <property name="text">
-           <string>16/06/2026 15:48:22</string>
+           <string>Đang cập nhật...</string>
           </property>
          </widget>
         </item>
@@ -215,6 +215,5 @@ QPushButton#btn_checkin:pressed {
  <resources/>
  <connections/>
 </ui>
-
 
 
