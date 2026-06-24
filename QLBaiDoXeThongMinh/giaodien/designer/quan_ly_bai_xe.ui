@@ -84,7 +84,7 @@ QPushButton#btn_xuat_excel {
 }
 QPushButton#btn_xuat_excel:hover {
     background: #12833D;
-</string>
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="mainLayout">

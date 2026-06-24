@@ -161,7 +161,7 @@ QPushButton[class="SlotBtn"] {
         <height>92</height>
        </size>
       </property>
-      <layout class="QHBoxLayout" name="headerOuterLayout">
+       <layout class="QHBoxLayout" name="headerOuterLayout">
         <property name="leftMargin">
          <number>28</number>
         </property>
