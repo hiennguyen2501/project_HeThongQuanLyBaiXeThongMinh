@@ -1,11 +1,30 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
+import re
+
+
+# Regex biển số xe Việt Nam: XX[A-Z][X]?-XXXXX hoặc XX[A-Z][X]?-XXX.XX
+# Ví dụ: 38A-12345, 51F-123.45, 30A1-12345
+BIEN_SO_REGEX = re.compile(
+    r"^\d{2}[A-Z]\d?[-\s]?\d{3,5}\.?\d{0,2}$"
+)  
+    
+    
+def kiem_tra_bien_so(bien_so: str) -> bool:
+    """Kiểm tra biển số xe có đúng quy định Việt Nam không."""
+    return bool(BIEN_SO_REGEX.match(bien_so))
+
 
 class PhuongTien(ABC):
     def __init__(self, bien_so: str, loai_xe: str, thoi_gian_vao: datetime = None):
         bien_so = bien_so.strip().upper()
         if not bien_so:
             raise ValueError("Biển số xe không được để trống")
+        if not kiem_tra_bien_so(bien_so):
+            raise ValueError(
+                f"Biển số '{bien_so}' không đúng quy định.\n"
+                "Định dạng hợp lệ: 38A-12345, 51F-123.45, 30A1-12345"
+            )
         self._bien_so = bien_so
         self._loai_xe = loai_xe
         self._thoi_gian_vao = thoi_gian_vao or datetime.now()
