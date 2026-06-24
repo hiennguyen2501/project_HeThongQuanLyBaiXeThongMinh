@@ -5,11 +5,6 @@ import os
 from views.trang_chu import TrangChu
 from presenters.trang_chu_presenter import TrangChuPresenter
 
-
-
-
-
-
 app = QApplication(sys.argv)
 app.setStyleSheet("""
 QMessageBox {

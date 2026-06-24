@@ -44,13 +44,13 @@ QTabWidget::pane {
 QTabBar::tab {
     background: #E8EEF6;
     color: #050505;
-    padding: 12px 28px;
+    padding: 12px 18px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     margin-right: 4px;
     font-size: 14px;
     font-weight: 800;
-    min-width: 180px;
+    min-width: 260px;
 }
 QTabBar::tab:selected {
     background: #176BFF;
@@ -311,5 +311,4 @@ QPushButton#btn_xuat_excel:hover {
  <resources/>
  <connections/>
 </ui>
-
 

@@ -3,7 +3,8 @@ from datetime import date, datetime
 from doituong.vi_tri_do import ViTriDo
 from doituong.loi_ngoai_le import LotFullError, VehicleNotFoundError
 from dulieu.sap_xep import sap_xep_theo_doanh_thu, sap_xep_theo_thoi_gian_gui
-from dulieu.tep_tin import doc_lich_su_csv, luu_ban_ghi_lich_su
+from dulieu.tep_tin import luu_ban_ghi_lich_su
+from dulieu.du_lieu_mau import tao_lich_su_xe_ra_mau, tao_xe_cho_mau, tao_xe_dang_gui_mau
 from xulyhethong.xu_ly_hang_doi import HangDoiXeCho
 class QuanLyBaiXe:
     def __init__(self, so_hang=8, so_cot=12):
@@ -11,8 +12,10 @@ class QuanLyBaiXe:
         self.so_cot = so_cot
         self.so_do_bai_xe = []
         self.hang_doi = HangDoiXeCho()
-        self._lich_su_xe_ra = doc_lich_su_csv()
+        self._lich_su_xe_ra = tao_lich_su_xe_ra_mau()
         self.khoi_tao_bai_xe()
+        self._nap_xe_dang_gui_mau()
+        self._nap_xe_cho_mau()
 
     def khoi_tao_bai_xe(self):
         """Khởi tạo mảng động 2 chiều chứa các đối tượng ViTriDo."""
@@ -25,6 +28,20 @@ class QuanLyBaiXe:
                 ma_vi_tri = f"{khu}{c + 1:02d}"
                 hang_moi.append(ViTriDo(ma_vi_tri, loai_slot))
             self.so_do_bai_xe.append(hang_moi)
+
+
+    def _nap_xe_dang_gui_mau(self):
+        for xe in tao_xe_dang_gui_mau():
+            if self._bien_so_da_ton_tai(xe.bien_so):
+                continue
+            self.check_in_xe(xe, dua_vao_hang_doi=False)
+
+
+    def _nap_xe_cho_mau(self):
+        for xe in tao_xe_cho_mau():
+            if self._bien_so_da_ton_tai(xe.bien_so):
+                continue
+            self.check_in_xe(xe, dua_vao_hang_doi=True)
 
 
     def tim_vi_tri_trong_gan_nhat(self, loai_xe):
