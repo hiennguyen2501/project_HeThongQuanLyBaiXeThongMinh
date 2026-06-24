@@ -12,11 +12,10 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import (
     QDialog, QMainWindow, QMessageBox, QPushButton,
     QTableWidgetItem, QListWidget, QListWidgetItem,
-    QFileDialog, QVBoxLayout,
+    QFileDialog, QVBoxLayout, QStyle,
 )
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QTextDocument
-from PyQt5.QtPrintSupport import QPrinter, QPrintDialog
+from PyQt5.QtGui import QColor, QImage, QPainter, QTextDocument, QTextOption
 import os
 import sys
 
@@ -144,9 +143,17 @@ class TrangChuPresenter:
         if hasattr(window, "tabWidget"):
             window.tabWidget.setCurrentIndex(tab_index)
 
-        # Task 3: Connect nút Xuất Excel
+        # Task 3: Connect nút thống kê
         if hasattr(window, "btn_xuat_excel"):
+            window.btn_xuat_excel.setText("Thống kê")
+            window.btn_xuat_excel.setIcon(window.style().standardIcon(QStyle.SP_FileDialogDetailedView))
             window.btn_xuat_excel.clicked.connect(lambda: self._xuat_excel_thong_ke(window))
+            window.btn_xuat_excel.setVisible(tab_index == 1)
+
+        if hasattr(window, "tabWidget") and hasattr(window, "btn_xuat_excel"):
+            window.tabWidget.currentChanged.connect(
+                lambda index, button=window.btn_xuat_excel: button.setVisible(index == 1)
+            )
 
         window.show()
         self._windows.append(window)
@@ -259,7 +266,7 @@ class TrangChuPresenter:
 
 
     # ----------------------------------------------------------------
-    # Task 11: In vé xe ra
+    # Task 11: Xuất ảnh hóa đơn xe ra
     # ----------------------------------------------------------------
     def _mo_thong_tin_xe_ra(self, bien_lai):
         xe_ra = bien_lai["xe_ra"]
@@ -284,12 +291,13 @@ class TrangChuPresenter:
         if hasattr(dialog, "lbl_thanh_tien"):
             dialog.lbl_thanh_tien.setText(f"{tien_gui:,}".replace(",", ".") + " đ")
 
-        # Lưu biên lai để dùng cho in vé
+        # Lưu biên lai để dùng cho xuất ảnh hóa đơn
         dialog._bien_lai = bien_lai
 
-        # Connect nút IN VÉ
+        # Connect nút xuất ảnh hóa đơn
         if hasattr(dialog, "btn_in_ve"):
-            dialog.btn_in_ve.clicked.connect(lambda: self._in_ve(dialog, bien_lai))
+            dialog.btn_in_ve.setText("XUẤT ẢNH HÓA ĐƠN")
+            dialog.btn_in_ve.clicked.connect(lambda: self._xuat_anh_hoa_don(dialog, bien_lai))
 
         xe_cho = bien_lai.get("xe_vao_tu_hang_doi")
         if xe_cho is not None:
@@ -301,8 +309,7 @@ class TrangChuPresenter:
         dialog.exec_()
 
 
-    def _in_ve(self, parent, bien_lai):
-        """In vé xe ra bằng QPrinter."""
+    def _tao_html_hoa_don(self, bien_lai):
         xe_ra = bien_lai["xe_ra"]
         ma_vi_tri = bien_lai["ma_vi_tri"]
         thoi_gian_ra = bien_lai["thoi_gian_ra"]
@@ -311,46 +318,66 @@ class TrangChuPresenter:
         loai_xe = "Xe máy" if xe_ra.loai_xe == "XeMay" else "Ô tô"
         thanh_tien_str = f"{tien_gui:,}".replace(",", ".") + " đ"
 
-        html = f"""
-        <div style="font-family: Arial; width: 300px; margin: auto; padding: 20px;">
-            <h2 style="text-align: center; border-bottom: 2px dashed #333; padding-bottom: 10px;">
-                🅿️ VÉ GỬI XE
+        return f"""
+        <div style="font-family: Arial; width: 460px; padding: 28px; color: #111827;">
+            <h2 style="text-align: center; border-bottom: 2px dashed #374151; padding-bottom: 12px; margin: 0; font-size: 24px;">
+                HÓA ĐƠN GỬI XE
             </h2>
-            <p style="text-align: center; font-size: 12px; color: #666;">
+            <p style="text-align: center; font-size: 14px; color: #4B5563; margin: 12px 0 18px;">
                 Hệ thống quản lý bãi xe thông minh
             </p>
-            <hr style="border: 1px dashed #ccc;">
-            <table style="width: 100%; font-size: 14px; border-collapse: collapse;">
-                <tr><td style="padding: 6px 0; font-weight: bold;">Biển số:</td>
-                    <td style="padding: 6px 0; text-align: right;">{xe_ra.bien_so}</td></tr>
-                <tr><td style="padding: 6px 0; font-weight: bold;">Loại xe:</td>
-                    <td style="padding: 6px 0; text-align: right;">{loai_xe}</td></tr>
-                <tr><td style="padding: 6px 0; font-weight: bold;">Vị trí đỗ:</td>
-                    <td style="padding: 6px 0; text-align: right;">{ma_vi_tri}</td></tr>
-                <tr><td style="padding: 6px 0; font-weight: bold;">Giờ vào:</td>
-                    <td style="padding: 6px 0; text-align: right;">{xe_ra.thoi_gian_vao.strftime("%d/%m/%Y %H:%M")}</td></tr>
-                <tr><td style="padding: 6px 0; font-weight: bold;">Giờ ra:</td>
-                    <td style="padding: 6px 0; text-align: right;">{thoi_gian_ra.strftime("%d/%m/%Y %H:%M")}</td></tr>
-                <tr><td style="padding: 6px 0; font-weight: bold;">Thời gian gửi:</td>
-                    <td style="padding: 6px 0; text-align: right;">{so_phut // 60} giờ {so_phut % 60} phút</td></tr>
-            </table>
-            <hr style="border: 1px dashed #ccc;">
-            <h3 style="text-align: center; color: #EA580C;">
+            <p style="font-size: 16px; margin: 10px 0;"><b>Biển số:</b> {xe_ra.bien_so}</p>
+            <p style="font-size: 16px; margin: 10px 0;"><b>Loại xe:</b> {loai_xe}</p>
+            <p style="font-size: 16px; margin: 10px 0;"><b>Vị trí đỗ:</b> {ma_vi_tri}</p>
+            <p style="font-size: 16px; margin: 10px 0;"><b>Giờ vào:</b> {xe_ra.thoi_gian_vao.strftime("%d/%m/%Y %H:%M:%S")}</p>
+            <p style="font-size: 16px; margin: 10px 0;"><b>Giờ ra:</b> {thoi_gian_ra.strftime("%d/%m/%Y %H:%M:%S")}</p>
+            <p style="font-size: 16px; margin: 10px 0;"><b>Thời gian gửi:</b> {so_phut // 60} giờ {so_phut % 60} phút</p>
+            <hr style="border: 1px dashed #D1D5DB; margin: 18px 0;">
+            <h3 style="text-align: center; color: #EA580C; font-size: 22px; margin: 0;">
                 Thành tiền: {thanh_tien_str}
             </h3>
-            <p style="text-align: center; font-size: 11px; color: #999; margin-top: 16px;">
-                Cảm ơn quý khách đã sử dụng dịch vụ!
-            </p>
         </div>
         """
 
-        printer = QPrinter(QPrinter.HighResolution)
-        print_dialog = QPrintDialog(printer, parent)
-        if print_dialog.exec_() == QPrintDialog.Accepted:
-            doc = QTextDocument()
-            doc.setHtml(html)
-            doc.print_(printer)
-            QMessageBox.information(parent, "Thành công", "Đã in vé thành công!")
+    def _xuat_anh_hoa_don(self, parent, bien_lai):
+        """Xuất hóa đơn xe ra thành ảnh PNG rõ nét."""
+        xe_ra = bien_lai["xe_ra"]
+        ten_file = f"hoa_don_{xe_ra.bien_so}".replace(" ", "_").replace("/", "_").replace("\\", "_")
+        file_path, _ = QFileDialog.getSaveFileName(
+            parent,
+            "Lưu ảnh hóa đơn",
+            f"{ten_file}.png",
+            "PNG Image (*.png)",
+        )
+        if not file_path:
+            return
+        if not file_path.lower().endswith(".png"):
+            file_path += ".png"
+
+        doc = QTextDocument()
+        text_option = QTextOption()
+        text_option.setWrapMode(QTextOption.WrapAtWordBoundaryOrAnywhere)
+        doc.setDefaultTextOption(text_option)
+        doc.setHtml(self._tao_html_hoa_don(bien_lai))
+        doc.setTextWidth(520)
+
+        scale = 2
+        margin = 24
+        width = int(doc.textWidth()) + margin * 2
+        height = int(doc.size().height()) + margin * 2
+        image = QImage(width * scale, height * scale, QImage.Format_ARGB32)
+        image.fill(QColor("white"))
+
+        painter = QPainter(image)
+        painter.scale(scale, scale)
+        painter.translate(margin, margin)
+        doc.drawContents(painter)
+        painter.end()
+
+        if image.save(file_path, "PNG"):
+            QMessageBox.information(parent, "Thành công", f"Đã xuất ảnh hóa đơn:\n{file_path}")
+        else:
+            QMessageBox.warning(parent, "Lỗi", "Không thể lưu ảnh hóa đơn.")
 
 
     # ----------------------------------------------------------------
@@ -395,7 +422,13 @@ class TrangChuPresenter:
         cot_headers = ["Biển số", "Loại xe", "Vị trí", "Giờ vào", "Giờ ra", "Số phút gửi", "Thành tiền"]
         cot_keys = ["bien_so", "loai_xe", "vi_tri", "gio_vao", "gio_ra", "so_phut_gui", "thanh_tien"]
 
-        def ghi_sheet(ws, tieu_de, du_lieu):
+        def lay_gia_tri_tien(gia_tri):
+            if isinstance(gia_tri, int):
+                return gia_tri
+            chuoi_so = "".join(ky_tu for ky_tu in str(gia_tri) if ky_tu.isdigit())
+            return int(chuoi_so) if chuoi_so else 0
+
+        def ghi_sheet(ws, tieu_de, du_lieu, hien_tong_doanh_thu=False):
             ws.title = tieu_de
             # Ghi tiêu đề sheet
             ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=len(cot_headers))
@@ -417,6 +450,34 @@ class TrangChuPresenter:
                     cell.border = thin_border
                     cell.alignment = Alignment(horizontal="center")
 
+            if hien_tong_doanh_thu:
+                dong_tong = len(du_lieu) + 5
+                tong_doanh_thu = sum(lay_gia_tri_tien(ban_ghi.get("thanh_tien", 0)) for ban_ghi in du_lieu)
+                tong_doanh_thu_text = f"{tong_doanh_thu:,}".replace(",", ".") + " đ"
+
+                ws.merge_cells(
+                    start_row=dong_tong,
+                    start_column=1,
+                    end_row=dong_tong,
+                    end_column=len(cot_headers) - 1,
+                )
+                label_cell = ws.cell(row=dong_tong, column=1, value="TỔNG DOANH THU")
+                label_cell.font = Font(bold=True, size=12, color="FFFFFF")
+                label_cell.fill = PatternFill(start_color="EA580C", end_color="EA580C", fill_type="solid")
+                label_cell.alignment = Alignment(horizontal="right", vertical="center")
+                label_cell.border = thin_border
+
+                value_cell = ws.cell(row=dong_tong, column=len(cot_headers), value=tong_doanh_thu_text)
+                value_cell.font = Font(bold=True, size=12, color="FFFFFF")
+                value_cell.fill = PatternFill(start_color="EA580C", end_color="EA580C", fill_type="solid")
+                value_cell.alignment = Alignment(horizontal="center", vertical="center")
+                value_cell.border = thin_border
+
+                for col_idx in range(2, len(cot_headers)):
+                    cell = ws.cell(row=dong_tong, column=col_idx)
+                    cell.fill = PatternFill(start_color="EA580C", end_color="EA580C", fill_type="solid")
+                    cell.border = thin_border
+
             # Auto width
             for col_idx in range(1, len(cot_headers) + 1):
                 ws.column_dimensions[openpyxl.utils.get_column_letter(col_idx)].width = 18
@@ -424,7 +485,7 @@ class TrangChuPresenter:
         # Sheet 1: Doanh thu cao nhất
         ws1 = wb.active
         du_lieu_doanh_thu = self._bai_xe.lay_lich_su_doanh_thu_cao_nhat()
-        ghi_sheet(ws1, "Doanh thu", du_lieu_doanh_thu)
+        ghi_sheet(ws1, "Doanh thu", du_lieu_doanh_thu, hien_tong_doanh_thu=True)
 
         # Sheet 2: Xe gửi lâu nhất
         ws2 = wb.create_sheet()
@@ -449,7 +510,7 @@ class TrangChuPresenter:
             window.tableWidget,
             self._bai_xe.lay_danh_sach_xe_dang_gui(),
             ["bien_so", "loai_xe", "vi_tri", "gio_vao", "hanh_dong"],
-            gia_tri_mac_dinh={"hanh_dong": "CHECK-OUT"},
+            gia_tri_mac_dinh={"hanh_dong": "CHECK-IN"},
         )
         self._do_du_lieu_bang(
             window.tableWidget_2,

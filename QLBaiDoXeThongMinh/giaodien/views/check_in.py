@@ -1,6 +1,6 @@
 from PyQt5 import uic
 from PyQt5.QtWidgets import QDialog, QMessageBox
-from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtCore import QDateTime, QTimer, pyqtSignal
 import os
 
 UI_PATH =  os.path.join(os.path.dirname(__file__),"..","designer","check_in.ui" )
@@ -17,9 +17,17 @@ class CheckInDialog(QDialog):
     def __init__(self):
         super().__init__()
         uic.loadUi(UI_PATH, self)
+        self._cap_nhat_thoi_gian_vao()
+
+        self._timer = QTimer(self)
+        self._timer.timeout.connect(self._cap_nhat_thoi_gian_vao)
+        self._timer.start(1000)
 
         # nút check-in
         self.btn_checkin.clicked.connect(self.yeu_cau_xac_nhan.emit)
+
+    def _cap_nhat_thoi_gian_vao(self):
+        self.lbl_thoi_gian_vao.setText(QDateTime.currentDateTime().toString("dd/MM/yyyy HH:mm:ss"))
 
     def lay_bien_so(self):
         return self.txt_bien_so.text()
