@@ -44,16 +44,17 @@ QTabWidget::pane {
 QTabBar::tab {
     background: #E8EEF6;
     color: #050505;
-    padding: 10px 22px;
+    padding: 12px 28px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     margin-right: 4px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 800;
+    min-width: 180px;
 }
 QTabBar::tab:selected {
     background: #176BFF;
-    color: #050505;
+    color: #FFFFFF;
 }
 QTableWidget {
     background: #FFFFFF;
@@ -69,6 +70,20 @@ QHeaderView::section {
     border: none;
     border-bottom: 1px solid #D8E0EA;
     font-weight: 800;
+}
+QPushButton#btn_xuat_excel {
+    background: #16A34A;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 700;
+    min-height: 40px;
+    max-width: 180px;
+}
+QPushButton#btn_xuat_excel:hover {
+    background: #12833D;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -255,6 +270,27 @@ QHeaderView::section {
          </layout>
         </widget>
        </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="bottomLayout">
+        <item>
+         <spacer name="bottomSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_xuat_excel">
+          <property name="text">
+           <string>📊 XUẤT EXCEL</string>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>

@@ -570,7 +570,7 @@ QPushButton#btn_thong_ke_chi_tiet {
              </property>
             </widget>
            </item>
-           <item>
+           <item alignment="Qt::AlignHCenter">
             <widget class="QLabel" name="donutLabel">
              <property name="minimumSize">
               <size>
@@ -619,7 +619,7 @@ QPushButton#btn_thong_ke_chi_tiet {
            <item row="0" column="0">
             <widget class="QLabel" name="icon_xe_may">
              <property name="text">
-              <string>XM</string>
+              <string>🏍</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -646,7 +646,7 @@ QPushButton#btn_thong_ke_chi_tiet {
            <item row="1" column="0">
             <widget class="QLabel" name="icon_o_to">
              <property name="text">
-              <string>ÔT</string>
+              <string>🚗</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
