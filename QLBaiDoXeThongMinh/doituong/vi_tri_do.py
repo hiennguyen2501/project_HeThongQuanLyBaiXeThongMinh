@@ -1,8 +1,6 @@
 from doituong.phuong_tien import PhuongTien
 
 
-
-
 class ViTriDo:
     def __init__(self, ma_vi_tri, loai_slot):
         self._ma_vi_tri = ma_vi_tri
@@ -45,6 +43,6 @@ class ViTriDo:
         print("Loại vị trí:", self._loai_slot)
         print("Trạng thái:", self._trang_thai)
         if self._xe_dang_do:
-            self._xe_dang_do.xuat()    
+            self._xe_dang_do.xuat()
         else:
-            print("Chưa có xe")  
+            print("Chưa có xe")

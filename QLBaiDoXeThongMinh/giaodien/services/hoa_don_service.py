@@ -1,4 +1,4 @@
-﻿from PyQt5.QtGui import QColor, QImage, QPainter, QTextDocument, QTextOption
+from PyQt5.QtGui import QColor, QImage, QPainter, QTextDocument, QTextOption
 
 
 class HoaDonService:

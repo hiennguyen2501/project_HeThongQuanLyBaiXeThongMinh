@@ -15,7 +15,6 @@ class QuanLyBaiXe:
         self.khoi_tao_bai_xe()
 
     def khoi_tao_bai_xe(self):
-        """Khởi tạo mảng động 2 chiều chứa các đối tượng ViTriDo."""
         self.so_do_bai_xe = []
         for r in range(self.so_hang):
             hang_moi = []
@@ -27,9 +26,6 @@ class QuanLyBaiXe:
             self.so_do_bai_xe.append(hang_moi)
 
     def tim_vi_tri_trong_gan_nhat(self, loai_xe):
-        """
-        Duyệt ma trận từ gần cổng ra xa để tìm ô trống đúng loại xe.
-        """
         for r in range(self.so_hang):
             for c in range(self.so_cot):
                 slot = self.so_do_bai_xe[r][c]
@@ -41,12 +37,6 @@ class QuanLyBaiXe:
 
 
     def check_in_xe(self, phuong_tien, dua_vao_hang_doi=True):
-        """
-        Xếp xe vào vị trí gần cổng nhất. Nếu hết chỗ, xe được đưa vào hàng đợi.
-
-
-        Trả về ViTriDo khi có chỗ, trả về None khi xe đã vào hàng đợi.
-        """
         if self._bien_so_da_ton_tai(phuong_tien.bien_so):
             raise ValueError(f"Biển số {phuong_tien.bien_so} đang tồn tại trong bãi hoặc hàng đợi")
 
@@ -64,30 +54,7 @@ class QuanLyBaiXe:
         return slot_trong
 
 
-    def check_out_xe(self, bien_so):
-        """
-        API cũ: giải phóng ô đỗ và trả về đối tượng xe để bên ngoài tự tính tiền.
-        """
-        slot = self._tim_slot_theo_bien_so(bien_so)
-        xe_ra = slot.trong_xe()
-        self._dua_xe_cho_vao_slot_neu_co(slot)
-        return xe_ra
-
-
-    def check_out_xe_kem_vi_tri(self, bien_so):
-        """
-        API cũ: giải phóng ô đỗ, trả về xe và mã vị trí.
-        """
-        slot = self._tim_slot_theo_bien_so(bien_so)
-        xe_ra = slot.trong_xe()
-        ma_vi_tri = slot.ma_vi_tri
-        self._dua_xe_cho_vao_slot_neu_co(slot)
-        return xe_ra, ma_vi_tri
-
     def check_out_va_lap_bien_lai(self, bien_so, thoi_gian_ra=None):
-        """
-        Checkout đầy đủ: tính tiền, lưu lịch sử, giải phóng ô và tự gọi xe chờ vào.
-        """
         thoi_gian_ra = thoi_gian_ra or datetime.now()
         slot = self._tim_slot_theo_bien_so(bien_so)
         xe_ra = slot.trong_xe()
@@ -151,7 +118,6 @@ class QuanLyBaiXe:
 
 
     def lay_du_lieu_so_do_cho_gui(self):
-        """Chuyển đổi mảng đối tượng thành cấu trúc dữ liệu Dictionary cho GUI đọc."""
         ma_tran_giao_dien = []
         for r in range(self.so_hang):
             hang_gui = []
@@ -190,7 +156,7 @@ class QuanLyBaiXe:
                 "bien_so": xe.bien_so,
                 "loai_xe": self._ten_hien_thi_loai_xe(xe.loai_xe),
                 "gio_vao": xe.thoi_gian_vao.strftime("%d/%m/%Y %H:%M"),
-            } 
+            }
             for xe in self.hang_doi.to_list()
         ]
     def lay_lich_su_xe_ra(self):
@@ -292,7 +258,3 @@ class QuanLyBaiXe:
 
     def _ten_hien_thi_loai_xe(self, loai_xe):
         return "Xe máy" if loai_xe == "XeMay" else "Ô tô"
-    
-
-
-

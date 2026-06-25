@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 
 PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -10,7 +10,6 @@ from xulyhethong.quan_ly_bai_xe import QuanLyBaiXe
 
 
 class ParkingService:
-    """Service/Model: gom nghiep vu bai xe, an chi tiet QuanLyBaiXe khoi Presenter."""
 
     def __init__(self, bai_xe=None):
         self._bai_xe = bai_xe or QuanLyBaiXe()

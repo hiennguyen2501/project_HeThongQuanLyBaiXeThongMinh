@@ -1,4 +1,4 @@
-﻿from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication
 import sys
 
 from presenters.trang_chu_presenter import TrangChuPresenter

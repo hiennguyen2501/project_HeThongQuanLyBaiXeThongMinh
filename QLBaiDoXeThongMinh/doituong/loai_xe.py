@@ -24,8 +24,6 @@ class XeMay(PhuongTien):
         super().xuat()
 
 
-
-
 class OTo(PhuongTien):
     gia_gio_dau = 20000
     gia_gio_tiep_theo = 15000
@@ -48,6 +46,3 @@ class OTo(PhuongTien):
 
     def xuat(self):
         super().xuat()
-
-        
-   
