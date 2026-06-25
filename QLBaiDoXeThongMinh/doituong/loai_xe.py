@@ -8,9 +8,8 @@ class XeMay(PhuongTien):
     gia_co_dinh = 5000
 
 
-    def __init__(self, bien_so, mau_sac="", thoi_gian_vao=None):
+    def __init__(self, bien_so, thoi_gian_vao=None):
         super().__init__(bien_so, loai_xe="XeMay", thoi_gian_vao=thoi_gian_vao)
-        self.mau_sac = mau_sac
 
 
     def tinh_tien_gui(self, thoi_gian_ra):
@@ -23,7 +22,6 @@ class XeMay(PhuongTien):
 
     def xuat(self):
         super().xuat()
-        print("Màu sắc:", self.mau_sac)
 
 
 
@@ -33,9 +31,8 @@ class OTo(PhuongTien):
     gia_gio_tiep_theo = 15000
 
 
-    def __init__(self, bien_so, mau_sac="", thoi_gian_vao=None):
+    def __init__(self, bien_so, thoi_gian_vao=None):
         super().__init__(bien_so, loai_xe="OTo", thoi_gian_vao=thoi_gian_vao)
-        self.mau_sac = mau_sac
 
 
     def tinh_tien_gui(self, thoi_gian_ra: datetime) :
@@ -51,7 +48,6 @@ class OTo(PhuongTien):
 
     def xuat(self):
         super().xuat()
-        print("Màu sắc:", self.mau_sac)
 
         
    
