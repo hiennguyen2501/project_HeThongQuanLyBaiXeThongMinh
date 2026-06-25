@@ -3,15 +3,12 @@ from datetime import datetime
 import re
 
 
-# Regex biển số xe Việt Nam: XX[A-Z][X]?-XXXXX hoặc XX[A-Z][X]?-XXX.XX
-# Ví dụ: 38A-12345, 51F-123.45, 30A1-12345
 BIEN_SO_REGEX = re.compile(
     r"^\d{2}[A-Z]\d?[-\s]?\d{3,5}\.?\d{0,2}$"
 )
 
 
 def kiem_tra_bien_so(bien_so: str) -> bool:
-    """Kiểm tra biển số xe có đúng quy định Việt Nam không."""
     return bool(BIEN_SO_REGEX.match(bien_so))
 
 

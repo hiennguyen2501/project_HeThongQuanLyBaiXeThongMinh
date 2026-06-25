@@ -1,5 +1,4 @@
 def quick_sort(danh_sach, key, reverse=True):
-    """Sắp xếp danh sách dict/object bằng Quick Sort, mặc định giảm dần."""
     if len(danh_sach) <= 1:
         return list(danh_sach)
 

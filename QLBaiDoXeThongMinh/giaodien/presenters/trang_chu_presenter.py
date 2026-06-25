@@ -1,4 +1,3 @@
-﻿"""Presenter tang trang chu: dieu phoi View va Service theo mo hinh MVP."""
 import os
 import sys
 
@@ -153,4 +152,3 @@ class TrangChuPresenter:
             self._parking_service.lay_danh_sach_xe_dang_gui(),
             self._parking_service.lay_lich_su_xe_ra(),
         )
-

@@ -1,4 +1,4 @@
-﻿from PyQt5 import uic
+from PyQt5 import uic
 from PyQt5.QtWidgets import QDialog, QMessageBox
 from PyQt5.QtCore import QDateTime, QTimer, pyqtSignal
 import os

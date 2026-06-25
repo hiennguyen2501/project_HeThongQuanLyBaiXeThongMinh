@@ -1,4 +1,4 @@
-﻿class ThongKeService:
+class ThongKeService:
     COT_HEADERS = ["Bien so", "Loai xe", "Vi tri", "Gio vao", "Gio ra", "So phut gui", "Thanh tien"]
     COT_KEYS = ["bien_so", "loai_xe", "vi_tri", "gio_vao", "gio_ra", "so_phut_gui", "thanh_tien"]
 
