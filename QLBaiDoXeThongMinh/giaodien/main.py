@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QApplication
 import sys
 
+from du_lieu_mau import tao_parking_service_mau
 from presenters.trang_chu_presenter import TrangChuPresenter
 from views.trang_chu import TrangChu
 
@@ -33,7 +34,7 @@ def main():
     app.setStyleSheet(APP_STYLE)
 
     view = TrangChu()
-    presenter = TrangChuPresenter(view)
+    presenter = TrangChuPresenter(view, tao_parking_service_mau())
     presenter.load()
 
     view.show()
